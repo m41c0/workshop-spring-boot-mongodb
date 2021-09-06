@@ -1,12 +1,12 @@
 package com.m41c0n.workshopmongo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.m41c0n.workshopmongo.domain.Post;
-import com.m41c0n.workshopmongo.domain.User;
 import com.m41c0n.workshopmongo.repository.PostRepository;
 import com.m41c0n.workshopmongo.services.exception.ObjectNotFoundException;
 
@@ -22,7 +22,9 @@ public class PostService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
-
+	public List<Post> findByTitle(String text) {
+		return repo.findByTitleContainingIgnoreCase(text);
+	}
 	
 	
 }
